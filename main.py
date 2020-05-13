@@ -16,9 +16,6 @@ options2.add_argument('headless')
 driver = webdriver.Chrome("chromedriver", options=options2)
 bot = telebot.TeleBot("1272517220:AAGp0kXsJc7Ne7qhZudC0EuiF3z1qnUhj4Q")
 
-dojob("536244426")
-
-
 
 @bot.message_handler(content_types=['text'])
 def start_message(message):
@@ -40,4 +37,7 @@ def dojob(chat_id):
     bot.send_message(chat_id, data)
     driver.quit()
 
-bot.polling()
+
+if __name__=="__main__":
+    dojob("536244426")
+    bot.polling()
