@@ -10,8 +10,11 @@ import telebot
  
 
 base_url = ("https://backend.digital-summer.sk.kz/login")
-driver = webdriver.Chrome("chromedriver")
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+driver = webdriver.Chrome("chromedriver", chrome_options=options)
 bot = telebot.TeleBot("1272517220:AAGp0kXsJc7Ne7qhZudC0EuiF3z1qnUhj4Q")
+
 
 
 driver.get(base_url)
