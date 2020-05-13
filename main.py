@@ -15,11 +15,33 @@ options2 = webdriver.ChromeOptions()
 options2.add_argument('headless')
 driver = webdriver.Chrome("chromedriver", options=options2)
 bot = telebot.TeleBot("1272517220:AAGp0kXsJc7Ne7qhZudC0EuiF3z1qnUhj4Q")
+a = 1
 
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(commands=['now'])
 def start_message(message):
-    dojob(message.chat.id)
+    try:
+        dojob(message.chat.id)
+    except:
+        bot.send_message(message.chat_id, "Какая-та ошибка")
+
+
+@bot.message_handler(commands=['start'])
+def loopit(message):
+    a = 1
+    bot.send_message(message.chat_id, "Начинаю отправлять статус каждые 10 минут")
+    while a == 1:
+        try:
+            dojob(message.chat.id)
+        except:
+            bot.send_message(message.chat_id, "Какая-та ошибка")
+        time.sleep(600)
+
+
+@bot.message_handler(commands=['stop'])
+def loopit(message):
+    a = 0
+    bot.send_message(message.chat_id, "Отмена отправки статуса каждые 10 минут")
 
 
 def dojob(chat_id):
@@ -40,10 +62,9 @@ def dojob(chat_id):
     for el in values:
         if el.get_attribute('innerHTML') == "0.00":
             news = news + 1
-    
-    print(values)
 
-    bot.send_message(chat_id, news)
+    text = "Новых кейсов: " + str(news)
+    bot.send_message(chat_id, text)
 
 
 if __name__=="__main__":
