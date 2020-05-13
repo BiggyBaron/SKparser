@@ -1,10 +1,31 @@
-import urllib.request
+# -*- coding: utf-8 -*-
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from selenium.webdriver.support.ui import Select
+import os
+import datetime
+import sys
+import pytest
 import telebot
-import ssl
+ 
+
+base_url = ("https://backend.digital-summer.sk.kz/login")
+driver = webdriver.Chrome("~/SKparser/chromedriver")
+bot = telebot.TeleBot("1272517220:AAGp0kXsJc7Ne7qhZudC0EuiF3z1qnUhj4Q")
 
 
-context = ssl._create_unverified_context()
+driver.get(base_url)
+        driver.maximize_window()
+        username = driver.find_element_by_id("login-form-login")
+        password = driver.find_element_by_id("login-form-password")
+        username.send_keys("dr.cleverest@gmail.com")
+        password.send_keys("NkGAfL")
+        driver.find_element_by_id("login-form").submit()
+        driver.save_screenshot("~/SKparser/landing_page.png")
+        photo = open('~/SKparser/landing_page.png', 'rb')
+        chat_id = "536244426"
+        bot.send_photo(chat_id, photo)
 
-with urllib.request.urlopen('https://backend.digital-summer.sk.kz/member/index?year=2020&sort=case_total', context=context) as response:
-   html = response.read()
-   print(html)
+
+driver.quit()
