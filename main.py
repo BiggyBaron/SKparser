@@ -27,17 +27,15 @@ def dojob(chat_id):
     driver.maximize_window()
     username = driver.find_element_by_id("login-form-login")
     password = driver.find_element_by_id("login-form-password")
-    username.send_keys("dr.cleverest@gmail.com")
-    password.send_keys("NkGAfL")
-    driver.find_element_by_id("login-form").submit()
-    time.sleep(10)
+    if username:
+        username.send_keys("dr.cleverest@gmail.com")
+        password.send_keys("NkGAfL")
+        driver.find_element_by_id("login-form").submit()
     driver.get(second_url)
     data = driver.find_element_by_id("w0-container").get_attribute('innerHTML')
-    values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]')
-    time.sleep(10)
+    values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]').get_attribute('innerHTML')
     print(values)
     bot.send_message(chat_id, values)
-    driver.quit()
 
 
 if __name__=="__main__":
