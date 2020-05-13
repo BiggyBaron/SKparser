@@ -10,6 +10,7 @@ import telebot
  
 
 base_url = ("https://backend.digital-summer.sk.kz/login")
+second_url = "https://backend.digital-summer.sk.kz/member/index?year=2020&sort=case_total"
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 driver = webdriver.Chrome("chromedriver", chrome_options=options)
@@ -24,7 +25,12 @@ password = driver.find_element_by_id("login-form-password")
 username.send_keys("dr.cleverest@gmail.com")
 password.send_keys("NkGAfL")
 driver.find_element_by_id("login-form").submit()
+time.sleep(10);
+driver.get(second_url)
+time.sleep(10);
 driver.save_screenshot("/home/ubuntu/SKparser/landing_page.png")
+
+
 photo = open('/home/ubuntu/SKparser/landing_page.png', 'rb')
 chat_id = "536244426"
 bot.send_photo(chat_id, photo)
