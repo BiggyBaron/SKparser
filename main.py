@@ -32,6 +32,7 @@ def dojob(chat_id):
         password.send_keys("NkGAfL")
         driver.find_element_by_id("login-form").submit()
     driver.get(second_url)
+    time.sleep(3)
     data = driver.find_element_by_id("w0-container").get_attribute('innerHTML')
     values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]').get_attribute('innerHTML')
     print(values)
