@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
@@ -23,25 +24,25 @@ def start_message(message):
     try:
         dojob(message.chat.id)
     except:
-        bot.send_message(message.chat_id, "Какая-та ошибка")
+        bot.send_message(message.chat.id, "Какая-та ошибка")
 
 
 @bot.message_handler(commands=['start'])
 def loopit(message):
     a = 1
-    bot.send_message(message.chat_id, "Начинаю отправлять статус каждые 10 минут")
+    bot.send_message(message.chat.id, "Начинаю отправлять статус каждые 10 минут")
     while a == 1:
         try:
             dojob(message.chat.id)
         except:
-            bot.send_message(message.chat_id, "Какая-та ошибка")
+            bot.send_message(message.chat.id, "Какая-та ошибка")
         time.sleep(600)
 
 
 @bot.message_handler(commands=['stop'])
-def loopit(message):
+def cancelit(message):
     a = 0
-    bot.send_message(message.chat_id, "Отмена отправки статуса каждые 10 минут")
+    bot.send_message(message.chat.id, "Отмена отправки статуса каждые 10 минут")
 
 
 def dojob(chat_id):
@@ -60,7 +61,7 @@ def dojob(chat_id):
     values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]')
     news = 0
     for el in values:
-        if el.get_attribute('innerHTML') == "0.00":
+        if el.get_attribute('innerHTML') == "":
             news = news + 1
 
     text = "Новых кейсов: " + str(news)
