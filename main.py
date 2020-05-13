@@ -31,6 +31,7 @@ def dojob(chat_id):
         username.send_keys("dr.cleverest@gmail.com")
         password.send_keys("NkGAfL")
         driver.find_element_by_id("login-form").submit()
+        time.sleep(3)
     driver.get(second_url)
     time.sleep(3)
     data = driver.find_element_by_id("w0-container").get_attribute('innerHTML')
