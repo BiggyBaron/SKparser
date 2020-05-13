@@ -49,8 +49,11 @@ def cancelit(message):
 def dojob(chat_id):
     driver.get(base_url)
     driver.maximize_window()
-    username = driver.find_element_by_id("login-form-login")
-    password = driver.find_element_by_id("login-form-password")
+    try:
+        username = driver.find_element_by_id("login-form-login")
+        password = driver.find_element_by_id("login-form-password")
+    except:
+        username = None
     if username:
         username.send_keys("dr.cleverest@gmail.com")
         password.send_keys("NkGAfL")
