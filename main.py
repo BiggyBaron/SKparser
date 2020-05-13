@@ -7,13 +7,20 @@ import os
 import datetime
 import sys
 import telebot
+
+
+def dojob(data):
+    # photo = open('/home/ubuntu/SKparser/landing_page.png', 'rb')
+    chat_id = "536244426"
+    bot.send_message(chat_id, data)
+
  
 
 base_url = ("https://backend.digital-summer.sk.kz/login")
 second_url = "https://backend.digital-summer.sk.kz/member/index?year=2020&sort=case_total"
-options = webdriver.ChromeOptions()
-options.add_argument('headless')
-driver = webdriver.Chrome("chromedriver", chrome_options=options)
+options2 = webdriver.ChromeOptions()
+options2.add_argument('headless')
+driver = webdriver.Chrome("chromedriver", options=options2)
 bot = telebot.TeleBot("1272517220:AAGp0kXsJc7Ne7qhZudC0EuiF3z1qnUhj4Q")
 
 
@@ -25,15 +32,13 @@ password = driver.find_element_by_id("login-form-password")
 username.send_keys("dr.cleverest@gmail.com")
 password.send_keys("NkGAfL")
 driver.find_element_by_id("login-form").submit()
-time.sleep(10);
+time.sleep(10)
 driver.get(second_url)
-time.sleep(10);
-driver.save_screenshot("/home/ubuntu/SKparser/landing_page.png")
+data = driver.find_element_by_id("w0-container")
+time.sleep(10)
+dojob(data)
+# driver.save_screenshot("/home/ubuntu/SKparser/landing_page.png")
 
-
-photo = open('/home/ubuntu/SKparser/landing_page.png', 'rb')
-chat_id = "536244426"
-bot.send_photo(chat_id, photo)
 
 
 driver.quit()
