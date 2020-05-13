@@ -33,9 +33,10 @@ def dojob(chat_id):
     time.sleep(10)
     driver.get(second_url)
     data = driver.find_element_by_id("w0-container").get_attribute('innerHTML')
+    values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]')
     time.sleep(10)
     print(data)
-    bot.send_message(chat_id, "OK")
+    bot.send_message(chat_id, values)
     driver.quit()
 
 
