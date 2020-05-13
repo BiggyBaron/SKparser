@@ -35,9 +35,15 @@ def dojob(chat_id):
     driver.get(second_url)
     time.sleep(3)
     data = driver.find_element_by_id("w0-container").get_attribute('innerHTML')
-    values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]').get_attribute('innerHTML')
+    values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]')
+    news = 0
+    for el in values:
+        if el.get_attribute('innerHTML') == "0.00":
+            news++
+    
     print(values)
-    bot.send_message(chat_id, values)
+    
+    bot.send_message(chat_id, news)
 
 
 if __name__=="__main__":
