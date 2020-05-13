@@ -24,7 +24,6 @@ def start_message(message):
     try:
         dojob(message.chat.id)
     except:
-        raise
         bot.send_message(message.chat.id, "Какая-та ошибка")
 
 
@@ -48,7 +47,6 @@ def cancelit(message):
 
 def dojob(chat_id):
     driver.get(base_url)
-    driver.maximize_window()
     try:
         username = driver.find_element_by_id("login-form-login")
         password = driver.find_element_by_id("login-form-password")
