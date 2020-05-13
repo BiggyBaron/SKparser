@@ -19,7 +19,7 @@ bot = telebot.TeleBot("1272517220:AAGp0kXsJc7Ne7qhZudC0EuiF3z1qnUhj4Q")
 
 @bot.message_handler(content_types=['text'])
 def start_message(message):
-    dojob(chat_id)
+    dojob(message.chat.id)
 
 
 def dojob(chat_id):
@@ -35,7 +35,7 @@ def dojob(chat_id):
     data = driver.find_element_by_id("w0-container").get_attribute('innerHTML')
     values = driver.find_elements_by_xpath('//td[@data-col-seq="7"]')
     time.sleep(10)
-    print(data)
+    print(values)
     bot.send_message(chat_id, values)
     driver.quit()
 
