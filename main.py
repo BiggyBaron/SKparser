@@ -39,10 +39,10 @@ def dojob(chat_id):
     news = 0
     for el in values:
         if el.get_attribute('innerHTML') == "0.00":
-            news++
+            news = news + 1
     
     print(values)
-    
+
     bot.send_message(chat_id, news)
 
 
