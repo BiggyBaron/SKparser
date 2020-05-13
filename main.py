@@ -24,6 +24,7 @@ def start_message(message):
     try:
         dojob(message.chat.id)
     except:
+        raise
         bot.send_message(message.chat.id, "Какая-та ошибка")
 
 
